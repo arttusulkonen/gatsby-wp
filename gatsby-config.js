@@ -6,7 +6,7 @@ module.exports = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": "mywpsite.local/graphql"
+      "url": "http://mywpsite.local/graphql"
     }
   }, "gatsby-plugin-postcss", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
