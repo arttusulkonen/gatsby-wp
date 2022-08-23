@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-and-word-press",
+  "name": "gatsby-and-wp",
   "version": "1.0.0",
   "private": true,
-  "description": "gatsby-and-word-press",
-  "author": "arttusulkonen",
+  "description": "Gatsby and WP",
+  "author": "Morten Rand-Hendriksen",
   "keywords": [
     "gatsby"
   ],
@@ -17,18 +17,24 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "gatsby": "^4.21.1",
-    "gatsby-plugin-image": "^2.21.0",
-    "gatsby-plugin-manifest": "^4.21.0",
-    "gatsby-plugin-mdx": "^4.0.0",
-    "gatsby-plugin-postcss": "^5.21.0",
-    "gatsby-plugin-sharp": "^4.21.0",
-    "gatsby-plugin-sitemap": "^5.21.0",
-    "gatsby-source-filesystem": "^4.21.1",
-    "gatsby-source-wordpress": "^6.21.1",
-    "gatsby-transformer-sharp": "^4.21.0",
-    "postcss": "^8.4.16",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "@wordpress/block-library": "^6.0.18",
+    "gatsby": "^4.5.4",
+    "gatsby-awesome-pagination": "^0.3.8",
+    "gatsby-plugin-image": "^2.5.2",
+    "gatsby-plugin-manifest": "^4.5.2",
+    "gatsby-plugin-mdx": "^3.5.2",
+    "gatsby-plugin-postcss": "^5.5.0",
+    "gatsby-plugin-react-helmet": "^5.5.0",
+    "gatsby-plugin-sharp": "^4.5.2",
+    "gatsby-plugin-sitemap": "^5.5.0",
+    "gatsby-source-filesystem": "^4.5.2",
+    "gatsby-source-wordpress": "^6.5.2",
+    "gatsby-transformer-sharp": "^4.5.0",
+    "postcss": "^8.4.5",
+    "postcss-preset-env": "^7.2.3",
+    "prettier": "^2.5.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
   }
 }
