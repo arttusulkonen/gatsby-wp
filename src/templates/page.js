@@ -1,12 +1,14 @@
 import * as React from "react";
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
+import * as styles from "./page.module.css";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import * as styles from "./page.module.css";
-import UniversalLink from "../utils/UniversalLink";
 
 const Page = ({ data }) => {
   const page = data.wpPage;
+
   return (
     <Layout>
       <Seo
@@ -14,10 +16,27 @@ const Page = ({ data }) => {
         image="/logo.png"
         pathname={page.uri}
         // Boolean indicating whether this is an article:
-        // article
+        article
       />
-      <article>
+      <article className={styles.article}>
+        {page.featuredImage && (
+          <figure className={styles.featimg}>
+            <GatsbyImage
+              image={getImage(page.featuredImage.node.localFile)}
+              alt={page.featuredImage.node.altText}
+            />
+          </figure>
+        )}
         <h1>{page.title}</h1>
+        <span>
+          {" "}
+          by: {page.author.node.name}. Published on{" "}
+          {new Date(page.date).toLocaleDateString("fi-FI", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </span>
         <div dangerouslySetInnerHTML={{ __html: page.content }} />
       </article>
     </Layout>
@@ -32,6 +51,26 @@ export const query = graphql`
       title
       content
       uri
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 1360
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
+      author {
+        node {
+          name
+        }
+      }
+      date
     }
   }
 `;
