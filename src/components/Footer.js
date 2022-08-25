@@ -1,6 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import * as styles from "./Footer.module.css"
+import * as styles from "./Footer.module.css";
+import FooterNav from "./FooterNav";
 
 const Footer = () => {
   return (
@@ -10,8 +11,9 @@ const Footer = () => {
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>
       </div>
+      <FooterNav />
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
