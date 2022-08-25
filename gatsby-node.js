@@ -5,7 +5,7 @@ const path = require(`path`);
  */
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions; // this method creates pages inside Gatsby
+  const { createPage } = actions;
 
   // Query all the data
   const queryResult = await graphql(`
@@ -14,6 +14,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         nodes {
           databaseId
           uri
+        }
+      }
+      postQuery: allWpPost(sort: { fields: date, order: DESC }) {
+        edges {
+          node {
+            databaseId
+            uri
+          }
         }
       }
     }
@@ -33,6 +41,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         databaseId: page.databaseId,
+      },
+    });
+  });
+
+  // Generate single post pages
+  const posts = queryResult.data.postQuery.edges;
+  posts.forEach((post) => {
+    createPage({
+      path: `/posts${post.node.uri}`,
+      component: path.resolve(`./src/templates/post.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        databaseId: post.node.databaseId,
       },
     });
   });
