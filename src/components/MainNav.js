@@ -50,15 +50,12 @@ const MainNav = () => {
       }
     }
   `);
-  console.log("Raw data:", wpMenu.allWpMenuItem.nodes);
 
   const headerMenu = FlatListToHierarchical(wpMenu.allWpMenuItem.nodes, {
     idKey: "id",
     childrenKey: "children",
     parentKey: "parentId",
   });
-  console.log("headerMenu: ", headerMenu);
-
   return (
     <nav className={styles.mainnav}>
       {headerMenu.length > 0 && <MenuLoop menuItems={headerMenu}></MenuLoop>}

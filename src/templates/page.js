@@ -8,6 +8,7 @@ import Seo from "../components/Seo";
 
 const Page = ({ data }) => {
   const page = data.wpPage;
+  console.log(data);
   const seoImageSrc = page.featuredImage
     ? getSrc(page.featuredImage.node.localFile)
     : `/logo.png`;

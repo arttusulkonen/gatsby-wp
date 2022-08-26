@@ -25,7 +25,6 @@ const FooterNav = () => {
   // console.log("Raw data:", wpMenu.allWpMenuItem);
 
   const menuItems = wpMenu.allWpMenuItem.edges;
-  console.log(menuItems);
   return (
     <nav>
       <ul>

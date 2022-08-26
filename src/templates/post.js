@@ -6,6 +6,7 @@ import * as styles from "./page.module.css";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import Catlist from "../components/Catlist";
+import PostNav from "../components/PostNav";
 
 const Post = ({ data }) => {
   const post = data.currentPost;
@@ -54,6 +55,7 @@ const Post = ({ data }) => {
           ])}
         </div>
       </article>
+      <PostNav prevPost={data.prevPost} nextPost={data.nextPost} />
     </Layout>
   );
 };
@@ -61,7 +63,7 @@ const Post = ({ data }) => {
 export default Post;
 
 export const query = graphql`
-  query ($databaseId: Int!) {
+  query ($databaseId: Int!, $nextId: Int, $prevId: Int) {
     currentPost: wpPost(databaseId: { eq: $databaseId }) {
       date
       databaseId
@@ -99,6 +101,14 @@ export const query = graphql`
           }
         }
       }
+    }
+    nextPost: wpPost(databaseId: { eq: $nextId }) {
+      title
+      uri
+    }
+    prevPost: wpPost(databaseId: { eq: $prevId }) {
+      title
+      uri
     }
   }
 `;

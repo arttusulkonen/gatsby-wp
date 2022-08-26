@@ -1,4 +1,5 @@
 const path = require(`path`);
+const { paginate } = require(`gatsby-awesome-pagination`);
 
 /**
  * Generate pages
@@ -21,6 +22,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           node {
             databaseId
             uri
+          }
+          next {
+            databaseId
+          }
+          previous {
+            databaseId
           }
         }
       }
@@ -55,7 +62,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         databaseId: post.node.databaseId,
+        nextId: post.next ? post.next.databaseId : null,
+        prevId: post.previous ? post.previous.databaseId : null,
       },
     });
+  });
+
+  // Create your paginated pages
+  paginate({
+    createPage, // The Gatsby `createPage` function
+    items: posts, // An array of objects
+    itemsPerPage: 4, // How many items you want per page
+    pathPrefix: "/posts", // Creates pages like `/blog`, `/blog/2`, etc
+    component: path.resolve(`./src/templates/posts-index.js`), // Just like `createPage()`
   });
 };
